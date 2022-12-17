@@ -1,0 +1,44 @@
+name: Docker Image CI for PHP 8.2
+
+on:
+  schedule:
+    - cron: "30 4 * * 0"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+       username: ${{ secrets.DOCKERHUB_USERNAME }}
+       password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push light
+      uses: docker/build-push-action@v3
+      with:
+       context: .
+       push: true
+       tags: sigblue/apache-php:82-light
+       build-args: VERSION=8.2
+       target: light
+    - name: Build and push standard
+      uses: docker/build-push-action@v3
+      with:
+       context: .
+       push: true
+       tags: sigblue/apache-php:82-standard
+       build-args: VERSION=8.2
+       target: standard
+    - name: Build and push full
+      uses: docker/build-push-action@v3
+      with:
+       context: .
+       push: true
+       tags: sigblue/apache-php:82-full
+       build-args: VERSION=8.2
+       target: full
+
