@@ -1,0 +1,22 @@
+name: Docker Image CI for PHP 8.1
+
+on:
+  schedule:
+    - cron: "20 10 * * *"
+
+jobs:
+
+  dockerHubDescription:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Docker Hub Description
+      uses: peter-evans/dockerhub-description@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: sigblue/apache-php
+        short-description: ${{ github.event.repository.description }}
