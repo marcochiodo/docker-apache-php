@@ -15,11 +15,12 @@ RUN apt-get install --fix-missing -y apt-utils
 RUN apt-get upgrade -y
 
 RUN apt-get install --fix-missing -y \
-	curl wget git zip g++ \
+	curl wget git zip unzip g++ \
 	libzip-dev libicu-dev libssl-dev
 
 RUN pecl install protobuf
 RUN pecl install mongodb
+RUN pecl install apcu
 
 RUN docker-php-ext-install \
 	bcmath \
