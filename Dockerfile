@@ -71,7 +71,7 @@ FROM standard as full
 RUN apt-get install --fix-missing -y \
 		procps pkg-config \
 		libc-dev zlib1g-dev libgmp-dev \
-		libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev
+		libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev libxml2-dev
 
 RUN pecl install memcached
 RUN pecl install imagick
