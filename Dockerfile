@@ -71,7 +71,7 @@ FROM standard as full
 RUN apt-get install --fix-missing -y \
 		procps pkg-config \
 		libc-dev zlib1g-dev libgmp-dev \
-		libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev libxml2-dev
+		libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev
 
 RUN pecl install memcached
 RUN pecl install imagick
@@ -90,8 +90,7 @@ RUN docker-php-ext-install \
 	sockets \
 	sysvshm \
 	tidy \
-	xsl \
-	zend_test
+	xsl
 	
 # RUN docker-php-ext-install xmlrpc
 # RUN pecl install stackdriver_debugger-0.2.0
