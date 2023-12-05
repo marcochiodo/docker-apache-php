@@ -90,8 +90,7 @@ RUN docker-php-ext-install \
 	sockets \
 	sysvshm \
 	tidy \
-	xsl \
-	zend_test
+	xsl
 	
 # RUN docker-php-ext-install xmlrpc
 # RUN pecl install stackdriver_debugger-0.2.0

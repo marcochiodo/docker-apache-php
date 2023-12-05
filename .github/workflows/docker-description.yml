@@ -3,6 +3,7 @@ name: DockerHub Description
 on:
   schedule:
     - cron: "50 10 * * *"
+  workflow_dispatch:
 
 jobs:
 
