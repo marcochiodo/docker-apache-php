@@ -19,7 +19,7 @@
   </Directory>
 
   <Directory /var/www/html > 
-    Options Indexes FollowSymLinks
+    Options FollowSymLinks
     AllowOverride None
     Require all granted
   </Directory>
