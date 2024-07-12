@@ -33,7 +33,7 @@ RUN docker-php-ext-install \
 # Common Apache config
 ##
 COPY ./apache /etc/apache2/sites-available/000-default.conf
-	
+
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf && \
 	cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
 	a2enmod rewrite headers mime
@@ -55,23 +55,26 @@ ENV PORT=80
 FROM light as standard
 
 RUN apt-get install --fix-missing -y \
-		libbz2-dev libpq-dev libpng-dev
+	libbz2-dev libpq-dev \
+	libpng-dev libwebp-dev libjpeg62-turbo-dev
 
 RUN pecl install grpc
 RUN pecl install redis
 
+RUN docker-php-ext-configure gd --with-webp --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd
+
 RUN docker-php-ext-install \
 	bz2 \
 	pdo_pgsql \
-	pdo_mysql \
-	gd
+	pdo_mysql
 
 FROM standard as full
 
 RUN apt-get install --fix-missing -y \
-		procps pkg-config \
-		libc-dev zlib1g-dev libgmp-dev \
-		libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev
+	procps pkg-config \
+	libc-dev zlib1g-dev libgmp-dev \
+	libldb-dev libldap2-dev libmemcached-dev libtidy-dev libxslt-dev libmagickwand-dev
 
 RUN pecl install memcached
 RUN pecl install imagick
@@ -91,7 +94,7 @@ RUN docker-php-ext-install \
 	sysvshm \
 	tidy \
 	xsl
-	
+
 # RUN docker-php-ext-install xmlrpc
 # RUN pecl install stackdriver_debugger-0.2.0
 
