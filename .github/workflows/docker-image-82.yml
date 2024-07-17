@@ -24,7 +24,7 @@ jobs:
        context: .
        push: true
        tags: sigblue/apache-php:82-light
-       build-args: VERSION=8.2
+       build-args: VERSION=8.2-apache-bullseye
        target: light
     - name: Build and push standard
       uses: docker/build-push-action@v3
@@ -32,7 +32,7 @@ jobs:
        context: .
        push: true
        tags: sigblue/apache-php:82-standard
-       build-args: VERSION=8.2
+       build-args: VERSION=8.2-apache-bullseye
        target: standard
     - name: Build and push full
       uses: docker/build-push-action@v3
@@ -40,6 +40,6 @@ jobs:
        context: .
        push: true
        tags: sigblue/apache-php:82-full
-       build-args: VERSION=8.2
+       build-args: VERSION=8.2-apache-bullseye
        target: full
 

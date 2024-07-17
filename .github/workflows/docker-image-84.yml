@@ -1,8 +1,8 @@
 name: Docker Image CI for PHP 8.3
 
 on:
-  schedule:
-    - cron: "00 3 * * 0"
+#  schedule:
+#    - cron: "00 3 * * 0"
   workflow_dispatch:
 
 jobs:
@@ -23,23 +23,23 @@ jobs:
       with:
        context: .
        push: true
-       tags: sigblue/apache-php:83-light
-       build-args: VERSION=8.3-apache-bullseye
+       tags: sigblue/apache-php:84-light
+       build-args: VERSION=8.4-rc-apache-bookworm
        target: light
     - name: Build and push standard
       uses: docker/build-push-action@v3
       with:
        context: .
        push: true
-       tags: sigblue/apache-php:83-standard
-       build-args: VERSION=8.3-apache-bullseye
+       tags: sigblue/apache-php:84-standard
+       build-args: VERSION=8.4-rc-apache-bookworm
        target: standard
     - name: Build and push full
       uses: docker/build-push-action@v3
       with:
        context: .
        push: true
-       tags: sigblue/apache-php:83-full
-       build-args: VERSION=8.3-apache-bullseye
+       tags: sigblue/apache-php:84-full
+       build-args: VERSION=8.4-rc-apache-bookworm
        target: full
 

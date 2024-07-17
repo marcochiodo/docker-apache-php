@@ -1,6 +1,6 @@
 ARG VERSION
 
-FROM php:$VERSION-apache-bullseye as light
+FROM php:$VERSION as light
 
 RUN echo 'Acquire::http::Timeout "10";' >> /etc/apt/apt.conf.d/80-custom-options
 RUN echo 'Acquire::Retries "5";' >> /etc/apt/apt.conf.d/80-custom-options
@@ -59,6 +59,7 @@ RUN apt-get install --fix-missing -y \
 	libpng-dev libwebp-dev libjpeg62-turbo-dev
 
 RUN pecl install grpc
+
 RUN pecl install redis
 
 RUN docker-php-ext-configure gd --with-webp --with-jpeg \
