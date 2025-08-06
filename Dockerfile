@@ -47,10 +47,10 @@ RUN chown www-data:www-data /var/www
 WORKDIR /var/www/html
 
 ENV PORT=80
-
 ##
 # END Common Apache config
 ##
+RUN apt-get clean --dry-run
 
 FROM light as standard
 
